@@ -1,0 +1,265 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Corpo */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background-color: #f4f5f5;
+    background-image: url("img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    overflow-y: auto;
+}
+
+/* Container principal */
+.app {
+    max-width: 700px;
+    width: 100%;
+    background-color: #ffffffcc;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    border-radius: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+h1 {
+    text-align: center;
+    color: #333974;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+/* Inputs e Select */
+input,
+select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+/* Botões */
+button {
+    background-color: #333974;
+    color: #fff;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Formulário de tarefas */
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.todo-form button {
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 20px;
+}
+
+/* Cada tarefa */
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.content p {
+    margin: 4px 0;
+}
+
+.category {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+button.complete {
+    background-color: #5cb85c;
+}
+
+button.remove {
+    background-color: #d9535f;
+}
+
+/* Pesquisa e filtro */
+.search,
+.filter {
+    border-bottom: 1px solid #888;
+    margin-bottom: 20px;
+    padding: 10px 0 20px;
+}
+
+.search h2,
+.filter h2 {
+    font-weight: bold;
+    color: #ccc;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* Container do input com ícone */
+.search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    color: #aaa;
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 10px 10px 10px px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    background-color: #222;
+    color: #eee;
+    font-size: 1rem;
+}
+
+/* Opções de filtro */
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 10px;
+}
+
+.filter-options > div {
+    flex: 1 1 45%;
+    min-width: 200px;
+}
+
+.filter-options p {
+    font-weight: bold;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.filter select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 8px;
+    background-color: #222;
+    color: #eee;
+    font-size: 1rem;
+}
+
+.filter-options button {
+    background-color: #333974;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.filter-options button:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Label invisível acessível */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+    .todo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .todo-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
