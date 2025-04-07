@@ -1,11 +1,13 @@
-/* Reset básico */
+/* Reset */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Corpo */
+/* Body */
+
 body {
     display: flex;
     justify-content: center;
@@ -22,7 +24,50 @@ body {
     overflow-y: auto;
 }
 
-/* Container principal */
+/* Temas (Claro / Escuro) */
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.1);
+}
+
+body.dark {
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+}
+
+body.dark .app {
+    background-color: #2a2a2acc;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark input,
+body.dark select {
+    background-color: #3a3a3a;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark .todo {
+    background-color: #333;
+}
+
+body.dark .search-icon {
+    color: #ccc;
+}
+
+/* Container Principal */
 .app {
     max-width: 700px;
     width: 100%;
@@ -34,6 +79,8 @@ body {
     animation: fadeIn 0.5s ease;
 }
 
+/* Títulos */
+
 h1 {
     text-align: center;
     color: #333974;
@@ -43,9 +90,11 @@ h1 {
 h2 {
     margin-top: 15px;
     margin-bottom: -10px;
+    color: #333974;
 }
 
-/* Inputs e Select */
+/*  Inputs / Selects */
+
 input,
 select {
     width: 100%;
@@ -57,7 +106,17 @@ select {
     font-size: 1rem;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0);
+    border-color: #333974;
+}
+
 /* Botões */
+
 button {
     background-color: #333974;
     color: #fff;
@@ -75,7 +134,16 @@ button:hover {
     transform: scale(1.02);
 }
 
-/* Formulário de tarefas */
+button.complete {
+    background-color: #5cb85c;
+}
+
+button.remove {
+    background-color: #d9535f;
+}
+
+/* Formulário de Tarefas */
+
 .todo-form {
     display: flex;
     flex-direction: column;
@@ -88,6 +156,8 @@ button:hover {
     margin-top: 5px;
 }
 
+/* Lista de Tarefas */
+
 .todo-list {
     display: flex;
     flex-direction: column;
@@ -97,7 +167,6 @@ button:hover {
     padding-bottom: 20px;
 }
 
-/* Cada tarefa */
 .todo {
     display: flex;
     justify-content: space-between;
@@ -113,6 +182,7 @@ button:hover {
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    color: #333;
 }
 
 .content {
@@ -129,15 +199,7 @@ button:hover {
     font-size: 0.9rem;
 }
 
-button.complete {
-    background-color: #5cb85c;
-}
-
-button.remove {
-    background-color: #d9535f;
-}
-
-/* Pesquisa e filtro */
+/* Pesquisa / Filtro */
 .search,
 .filter {
     border-bottom: 1px solid #888;
@@ -148,12 +210,11 @@ button.remove {
 .search h2,
 .filter h2 {
     font-weight: bold;
-    color: #ccc;
+    color: #333974;
     margin-bottom: 10px;
     font-size: 1.1rem;
 }
 
-/* Container do input com ícone */
 .search-input {
     position: relative;
     display: flex;
@@ -172,15 +233,15 @@ button.remove {
 
 .search-input input {
     width: 100%;
-    padding: 10px 10px 10px px;
-    border: 1px solid #666;
+    padding: 10px 10px 10px 14px; /* Corrigido aqui */
     border-radius: 10px;
-    background-color: #222;
-    color: #eee;
+    background-color: #ffffff;
+    color: #333;
     font-size: 1rem;
 }
 
-/* Opções de filtro */
+/* Filtro - Opções */
+
 .filter-options {
     display: flex;
     flex-wrap: wrap;
@@ -195,18 +256,8 @@ button.remove {
 
 .filter-options p {
     font-weight: bold;
-    color: #aaa;
+    color: #333974;
     margin-bottom: 6px;
-}
-
-.filter select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #666;
-    border-radius: 8px;
-    background-color: #222;
-    color: #eee;
-    font-size: 1rem;
 }
 
 .filter-options button {
@@ -226,7 +277,8 @@ button.remove {
     transform: scale(1.02);
 }
 
-/* Label invisível acessível */
+/*  Acessibilidade */
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -239,7 +291,8 @@ button.remove {
     border: 0;
 }
 
-/* Animação */
+/* Animações */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -251,7 +304,8 @@ button.remove {
     }
 }
 
-/* Responsivo */
+/*  Responsividade */
+
 @media (max-width: 500px) {
     .todo {
         flex-direction: column;

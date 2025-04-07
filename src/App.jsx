@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Todo from "./components/Todo";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
@@ -28,9 +28,25 @@ function App() {
     ]);
 
     const [search, setSearch] = useState("");
-
     const [filter, setFilter] = useState("All");
     const [sort, setSort] = useState("Ascendente");
+
+    // 🌗 Controle de tema
+    const [theme, setTheme] = useState("light");
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        setTheme(savedTheme);
+        document.body.classList.add(savedTheme);
+    }, []);
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        document.body.classList.remove("light", "dark");
+        document.body.classList.add(newTheme);
+        localStorage.setItem("theme", newTheme);
+    };
 
     const addTodo = (text, category) => {
         const newTodos = [
@@ -46,23 +62,27 @@ function App() {
     };
 
     const removeTodo = (id) => {
-        const newTodos = [...todos];
-        const filteredTodos = newTodos.filter((todo) =>
-            todo.id !== id ? todo : null
-        );
+        const filteredTodos = todos.filter((todo) => todo.id !== id);
         setTodos(filteredTodos);
     };
 
     const completeTodo = (id) => {
-        const newTodos = [...todos];
-        newTodos.map((todo) =>
-            todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo
+        const newTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
         );
         setTodos(newTodos);
     };
 
     return (
         <div className="app">
+            <button
+                id="toggle-theme"
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Alternar tema"
+            >
+                <span id="theme-icon">{theme === "light" ? "🌙" : "☀️"}</span>
+            </button>
             <h1>Lista de Tarefas</h1>
             <Search search={search} setSearch={setSearch} />
             <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
